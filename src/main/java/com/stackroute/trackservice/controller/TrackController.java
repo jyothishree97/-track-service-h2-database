@@ -7,6 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("api/v1")
 public class TrackController
@@ -32,17 +35,19 @@ public class TrackController
         Track obtainedTrack=trackService.getById(id);
         return new ResponseEntity<>(obtainedTrack, HttpStatus.OK);
     }
-//
-//    @GetMapping("track")
-//    public ResponseEntity<?> getAllTracks(@RequestBody Track track){
-//       Track retrieveTrack=trackService.getAllTracks(track);
-//    }
-//
-//    @DeleteMapping("track/{id}")
-//    public ResponseEntity<?> deleteTrack(@PathVariable int id){
-//        Track deletedTrack=trackService.deleteTrackById(id);
-//        return new ResponseEntity<>(deletedTrack,HttpStatus.OK);
-//    }
+
+    @GetMapping("track")
+    public ResponseEntity<?> getAllTracks()
+    {
+        List<Track> trackList=trackService.getAllTracks();
+        return new ResponseEntity<>(trackList,HttpStatus.OK);
+    }
+
+    @DeleteMapping("track/{id}")
+    public ResponseEntity<?> deleteTrackById(@PathVariable int id){
+        Track deletedTrack=trackService.deleteTrackById(id);
+        return new ResponseEntity<>(deletedTrack,HttpStatus.OK);
+    }
 
 
 
