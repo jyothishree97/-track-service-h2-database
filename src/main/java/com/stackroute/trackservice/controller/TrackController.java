@@ -48,8 +48,12 @@ public class TrackController
         Track deletedTrack=trackService.deleteTrackById(id);
         return new ResponseEntity<>(deletedTrack,HttpStatus.OK);
     }
-
-
-
-
+    @PutMapping("track")
+    public ResponseEntity<?> trackUpdate(@RequestBody Track track)
+    {
+        ResponseEntity responseEntity;
+        Track trackupdated=trackService.UpdateTrack(track);
+        responseEntity=new ResponseEntity("successfully updated",HttpStatus.CREATED);
+        return responseEntity;
+    }
 }
